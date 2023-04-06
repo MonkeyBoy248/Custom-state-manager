@@ -10,6 +10,6 @@ export type StateSlice<State> =
 
 export interface Store<State> {
   getState: () => State;
-  subscribe: (subscriber: Subscriber<State>) => void;
+  subscribe: (subscriber: Subscriber<State>) => () => void;
   updateState: (stateSlice: StateSlice<State>) => void;
 }

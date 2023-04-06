@@ -10,7 +10,7 @@ export function createStore<State>(state: State): Store<State> {
     },
 
     subscribe: (subscriber: Subscriber<State>) => {
-      subscribable.subscribe(subscriber);
+      return subscribable.subscribe(subscriber);
     },
 
     updateState: (stateSlice: StateSlice<State>): void => {
