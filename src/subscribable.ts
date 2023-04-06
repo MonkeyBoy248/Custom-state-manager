@@ -1,6 +1,5 @@
 import { Subscribable, Subscriber } from './types';
 
-
 export function createSubscribable<T>(): Subscribable<T> {
   const subscribers = new Set<Subscriber<T>>();
 
