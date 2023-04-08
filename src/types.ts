@@ -13,3 +13,10 @@ export interface Store<State> {
   subscribe: (subscriber: Subscriber<State>) => () => void;
   updateState: (stateSlice: StateSlice<State>) => void;
 }
+
+export type StateCreator<T> = (
+  set: Store<T>['updateState'],
+  get: Store<T>['getState']
+) => T;
+export type Selector<T, R> = (state: T) => R;
+export type EqualityFunction<T> = (first: T, second: T) => boolean;
