@@ -1,4 +1,4 @@
-export function isEqual<T>(firstValue: T, secondValue: T): boolean {
+export function areEqual<T>(firstValue: T, secondValue: T): boolean {
   if (Object.is(firstValue, secondValue)) {
     return true;
   }
@@ -63,7 +63,3 @@ export function isEqual<T>(firstValue: T, secondValue: T): boolean {
 
   return true;
 }
-
-const arr = [1, 2, 3, 4];
-
-console.log(isEqual(arr, [1, 2, 4, 5]));
