@@ -1,10 +1,12 @@
+import { isOperator } from './operators/utils/helpers/isOperator';
 import { createSubscribable } from './subscribable';
-import { StateCreator, StateSlice, Store } from './types';
+import { StateCreator, Store } from './types';
+import { UpdateObject } from './operators/types';
 
 export function createStore<State>(
   stateCreator: StateCreator<State>
 ): Store<State> {
-  let state: State;
+  let state: ReturnType<typeof stateCreator>;
   const subscribable = createSubscribable<State>();
 
   const getState = (): State => {
@@ -13,18 +15,24 @@ export function createStore<State>(
 
   const subscribe = subscribable.subscribe;
 
-  const updateState = (stateSlice: StateSlice<State>): void => {
-    const newState =
-      typeof stateSlice === 'function' ? stateSlice(state) : stateSlice;
+  const updateState = (updateObject: UpdateObject<State> | ((value: State) => UpdateObject<State>)): void => {
+    const stateSliceValue =
+      typeof updateObject === 'function' ? updateObject(state) : updateObject;
+    const copy: Partial<State> = {};
 
-    if (Object.is(newState, state)) {
-      return;
+    for (const key in stateSliceValue) {
+      const nextValue = stateSliceValue[key];
+      const oldStateValue = state[key];
+      const newStateValue = isOperator(nextValue) ? nextValue(oldStateValue) : nextValue;
+
+      if (Object.is(newStateValue, oldStateValue)) {
+        continue;
+      }
+
+      copy[key] = newStateValue as State[Extract<keyof State, string>];
     }
 
-    state =
-      typeof newState !== 'object'
-        ? newState
-        : Object.assign({}, state, newState);
+    state = Object.assign({}, state, copy);
     subscribable.publish(state);
   };
 

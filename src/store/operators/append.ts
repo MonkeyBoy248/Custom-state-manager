@@ -1,11 +1,15 @@
-export function append<T>(existing: T[], items: T[]): T[] {
-  if (!items.length && !existing.length) {
-    return [] as T[];
-  }
+import { Operator } from './types';
 
-  if (!items.length) {
-    return existing;
-  }
+export function append<T>(items: T[]): Operator<T[]> {
+  return (current: T[]): T[] => {
+    if (!items.length && !current.length) {
+      return [] as T[];
+    }
 
-  return existing.concat(items);
+    if (!items.length) {
+      return current;
+    }
+
+    return current.concat(items);
+  }
 }
