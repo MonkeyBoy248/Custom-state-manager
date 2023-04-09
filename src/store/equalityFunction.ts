@@ -1,4 +1,4 @@
-export function areEqual<T>(firstValue: T, secondValue: T): boolean {
+export function equalityFunction<T>(firstValue: T, secondValue: T): boolean {
   if (Object.is(firstValue, secondValue)) {
     return true;
   }
