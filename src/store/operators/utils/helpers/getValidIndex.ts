@@ -1,4 +1,4 @@
-import { Predicate } from '../../types';
+import { Predicate } from '../../../../types/operators';
 import { isPredicate } from './isPredicate';
 
 export function getValidIndex<T>(selector: number | Predicate<T>, existing: T[]): null | number {

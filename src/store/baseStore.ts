@@ -1,7 +1,7 @@
-import { isOperator } from './operators/utils/helpers/isOperator';
+import { isOperator } from '@store/operators/utils/helpers/isOperator';
 import { createSubscribable } from './subscribable';
-import { StateCreator, Store } from './types';
-import { UpdateObject } from './operators/types';
+import { StateCreator, Store } from 'types/store';
+import { UpdateObject } from 'types/operators';
 
 export function createStore<State>(
   stateCreator: StateCreator<State>

@@ -1,4 +1,4 @@
-import { Operator, Predicate } from './types';
+import { Operator, Predicate } from 'types/operators';
 import { getValidIndex } from './utils/helpers/getValidIndex';
 
 export function removeItem<T>(selector: number | Predicate<T>, existing: T[]): Operator<T[]> {

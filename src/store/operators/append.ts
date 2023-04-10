@@ -1,4 +1,4 @@
-import { Operator } from './types';
+import { Operator } from 'types/operators';
 
 export function append<T>(items: T[]): Operator<T[]> {
   return (current: T[]): T[] => {

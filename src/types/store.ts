@@ -1,4 +1,4 @@
-import { UpdateObject } from './operators/types';
+import { UpdateObject } from './operators';
 
 export type Subscriber<T> = (value: T) => void;
 export interface Subscribable<T> {

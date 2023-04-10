@@ -1,4 +1,4 @@
-import { Store, StateCreator, Selector, EqualityFunction } from './types';
+import { Store, StateCreator, Selector, EqualityFunction } from 'types/store';
 import { createStore } from './baseStore';
 import { useSyncExternalStoreWithSelector } from 'use-sync-external-store/shim/with-selector';
 
