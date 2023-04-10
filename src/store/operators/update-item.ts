@@ -1,4 +1,4 @@
-import { Operator, Predicate } from 'types/operators';
+import { Operator, Predicate } from '../../types/operators';
 import { getValidIndex } from './utils/helpers/getValidIndex';
 import { isOperator } from './utils/helpers/isOperator';
 

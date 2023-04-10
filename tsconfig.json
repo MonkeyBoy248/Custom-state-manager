@@ -1,9 +1,7 @@
 {
   "compilerOptions": {
-    "typeRoots": ["node_modules@types", "dist/types/index.d.ts"],
     "target": "ESNext",
     "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": false,
     "skipLibCheck": true,
     "esModuleInterop": false,
@@ -18,15 +16,7 @@
     "declaration": true,
     "outDir": "dist",
     "sourceMap": true,
-    "declarationDir": "types",
-    "emitDeclarationOnly": true,
-    "paths": {
-      "simple-store": ["./src/index.ts"],
-      "@/*": ["./src"],
-      "@store/*": ["./src/store/*"],
-      "@store/operators/*": ["./src/store/operators/*"],
-      "types/*": ["./src/types/*"]
-    }
+    "emitDeclarationOnly": true
   },
   "include": ["src/**/*"],
   "references": [{ "path": "./tsconfig.node.json" }],

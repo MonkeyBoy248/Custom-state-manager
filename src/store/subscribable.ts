@@ -1,4 +1,4 @@
-import { Subscribable, Subscriber } from 'types/store';
+import { Subscribable, Subscriber } from '../types/store';
 
 export function createSubscribable<T>(): Subscribable<T> {
   const subscribers = new Set<Subscriber<T>>();
