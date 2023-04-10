@@ -1,26 +1,30 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import tsConfigPaths from 'vite-tsconfig-paths';
-import typescript from 'rollup-plugin-typescript2';
-import * as packageJSON from './package.json';
-import path from 'path'
+import { defineConfig } from 'vite';
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+import dts from 'vite-plugin-dts';
+import path from 'path';
 
 const resolvePaths = (...paths: string[]): string => {
-  return path.resolve(__dirname, ...paths)
-}
+  return path.resolve(__dirname, ...paths);
+};
+const extensions = ['.js', '.ts', '.tsx'];
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  plugins: [dts({
+    tsConfigFilePath: './tsconfig.json',
+    insertTypesEntry: true
+  })],
   build: {
     lib: {
       entry: resolvePaths('./src/index.ts'),
       name: 'SimpleStore',
     },
     rollupOptions: {
-      external: Object.keys(packageJSON.peerDependencies)
-    }
+      plugins: [
+        resolve({ extensions }),
+        commonjs(),
+      ],
+    },
   },
-  plugins: [react(), tsConfigPaths(), typescript({
-    tsconfig: resolvePaths('./tsconfig.json')
-  })],
-})
+});
