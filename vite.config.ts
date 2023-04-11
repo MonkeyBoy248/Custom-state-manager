@@ -8,6 +8,10 @@ const resolvePaths = (...paths: string[]): string => {
   return path.resolve(__dirname, ...paths);
 };
 const extensions = ['.js', '.ts'];
+const globals = {
+  react: 'react',
+  'react-dom': 'react-dome',
+};
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -28,7 +32,11 @@ export default defineConfig({
       },
     },
     rollupOptions: {
+      external: ['react', 'react-dom'],
       input: resolvePaths('./src/index.ts'),
+      output: {
+        globals
+      },
       plugins: [resolve({ extensions }), commonjs()],
     },
   },
