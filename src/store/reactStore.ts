@@ -4,7 +4,7 @@ import { useSyncExternalStoreWithSelector } from 'use-sync-external-store/shim/w
 
 export function useStore<Snapshot, Slice>(
   store: Store<Snapshot>,
-  selector: Selector<Snapshot, Slice> = store.getState() as any,
+  selector: Selector<Snapshot, Slice> = store.getState as any,
   equalityFunction?: EqualityFunction<Slice>
 ): Slice {
   return useSyncExternalStoreWithSelector(
