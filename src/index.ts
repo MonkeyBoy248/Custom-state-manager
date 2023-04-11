@@ -4,6 +4,7 @@ export { updateItem } from './store/operators/update-item';
 export { create } from './store/reactStore';
 export { createStore } from './store/baseStore';
 export { equalityFunction } from './store/equalityFunction';
+
 export type { Predicate, Operator, UpdateObject } from './types/operators';
 export type {
   Selector,

@@ -1,29 +1,32 @@
 {
-  "name": "simple-store",
-  "version": "0.0.0",
+  "name": "zuxs-store",
+  "version": "1.0.1",
   "author": "Kirill Temnyi",
   "repository": {
     "type": "git",
     "url": "https://github.com/MonkeyBoy248/Simple-store"
   },
   "type": "module",
-  "main": "./dist/simple-store.umd.cjs",
-  "module": "./dist/simple-store.js",
+  "main": "./dist/cjs/zuxs.js",
+  "module": "./dist/esm/zuxs.js",
   "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
+    "./package.json": "./package.json",
     ".": {
       "types": "./dist/index.d.ts",
-      "default": "./dist/simple-store.umd.cjs",
-      "import": "./dist/simple-store.js"
+      "default": "./dist/cjs/zuxs.js",
+      "import": "./dist/esm/zuxs.js"
     }
   },
   "scripts": {
+    "clean": "rimraf dist",
     "dev": "vite",
-    "build": "rimraf dist && tsc && vite build",
-    "preview": "vite preview"
+    "build": "npm run clean && tsc && vite build",
+    "preview": "vite preview",
+    "prepublish": "npm run build"
   },
   "dependencies": {
     "use-sync-external-store": "1.2.0"
@@ -42,5 +45,9 @@
     "typescript": "^4.9.3",
     "vite": "^4.2.0",
     "vite-plugin-dts": "2.2.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.8",
+    "react-dom": ">=16.8"
   }
 }

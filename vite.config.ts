@@ -7,24 +7,29 @@ import path from 'path';
 const resolvePaths = (...paths: string[]): string => {
   return path.resolve(__dirname, ...paths);
 };
-const extensions = ['.js', '.ts', '.tsx'];
+const extensions = ['.js', '.ts'];
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [dts({
-    tsConfigFilePath: './tsconfig.json',
-    insertTypesEntry: true
-  })],
+  plugins: [
+    dts({
+      tsConfigFilePath: './tsconfig.json',
+      outputDir: 'dist/declarations',
+      insertTypesEntry: true,
+    }),
+  ],
   build: {
     lib: {
       entry: resolvePaths('./src/index.ts'),
-      name: 'SimpleStore',
+      name: 'zuxs',
+      formats: ['cjs', 'es', 'umd'],
+      fileName(format) {
+        return `${format}/zuxs.js`
+      },
     },
     rollupOptions: {
-      plugins: [
-        resolve({ extensions }),
-        commonjs(),
-      ],
+      input: resolvePaths('./src/index.ts'),
+      plugins: [resolve({ extensions }), commonjs()],
     },
   },
 });
